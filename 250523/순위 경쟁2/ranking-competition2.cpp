@@ -39,7 +39,7 @@ int main() {
         else if (a_score < b_score) { hall_of_fame[0] = false; hall_of_fame[1] = true; }
         else { hall_of_fame[0] = true; hall_of_fame[1] = true; };
 
-        if (cp_hall_of_fame[0] != hall_of_fame[0] || cp_hall_of_fame[1] != cp_hall_of_fame[1])
+        if (cp_hall_of_fame[0] != hall_of_fame[0] || cp_hall_of_fame[1] != hall_of_fame[1])
         {
             cnt++;
         }
