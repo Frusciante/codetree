@@ -44,7 +44,7 @@ int main() {
     seats[max_dist_idx] = '1';
 
     int min_dist = N;
-    dist_start = 0;
+    dist_start = -1;
 
     for (int i = 0; i < seats.length(); i++)
     {
@@ -56,7 +56,7 @@ int main() {
                 continue;
             }
 
-            if (min_dist > i - dist_start) 
+            if (dist_start != -1 && min_dist > i - dist_start) 
             {
                 min_dist = i - dist_start;
             }
