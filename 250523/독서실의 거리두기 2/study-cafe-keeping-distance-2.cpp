@@ -14,6 +14,7 @@ int main() {
 
     int max_dist = 0;
     int dist_start = 0;
+    int max_dist_idx;
 
     for (int i = 1; i < seats.length(); i++)
     {
@@ -22,6 +23,7 @@ int main() {
             if (max_dist < i - dist_start) 
             {
                 max_dist = (i - dist_start) / 2;
+                max_dist_idx = (i + dist_start) / 2;
                 dist_start = i;
             }
         }
@@ -30,11 +32,29 @@ int main() {
             if (max_dist < i - dist_start)
             {
                 max_dist = i - dist_start;
+                max_dist_idx = i;
             } 
         }
     }
 
-    cout << max_dist;
+    seats[max_dist_idx] = '1';
+
+    int min_dist = N;
+    dist_start = 0;
+
+    for (int i = 1; i < seats.length(); i++)
+    {
+        if (seats[i] == '1' || i == seats.length() - 1)
+        {
+            if (min_dist > i - dist_start) 
+            {
+                min_dist = i - dist_start;
+                dist_start = i;
+            }
+        }
+    }  
+
+    cout << min_dist;
 
     return 0;
 }
