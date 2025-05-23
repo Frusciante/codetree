@@ -53,7 +53,6 @@ int main() {
             if (dist_start == 0)
             {
                 dist_start = i;
-                min_dist = i;
                 continue;
             }
 
