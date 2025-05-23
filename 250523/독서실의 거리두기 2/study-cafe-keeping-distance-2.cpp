@@ -50,7 +50,7 @@ int main() {
     {
         if (seats[i] == '1')
         {
-            if (dist_start == 0)
+            if (i == 0)
             {
                 dist_start = i;
                 continue;
