@@ -13,7 +13,7 @@ enum
 
 enum
 {
-    WIN, DRAW, LOSE, ERR
+    WIN = 1, DRAW = 0, LOSE = -1
 };
 
 /*
@@ -54,8 +54,6 @@ int game(int p1, int p2)
             return DRAW;
         }
     }
-
-    return ERR;
 }
 
 const char all_cases[][3] =
@@ -94,7 +92,7 @@ int main()
 
         for (int j = 0; j < N; j++)
         {
-            if (1 == game(a[j], b[j])) { tmp_cnt++; }
+            if (1 == game(cases[a[j] - 1], cases[b[j] - 1])) { tmp_cnt++; }
         }
 
         if (tmp_cnt >= max_cnt) max_cnt = tmp_cnt;
