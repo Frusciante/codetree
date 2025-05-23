@@ -34,7 +34,7 @@ int main() {
         }
         else if (i == seats.length() - 1)
         {
-            if (max_dist_idx != 0 && max_dist < i - dist_start)
+            if (max_dist < i - dist_start)
             {
                 max_dist = i - dist_start;
                 max_dist_idx = i;
@@ -53,6 +53,7 @@ int main() {
             if (dist_start == 0)
             {
                 dist_start = i;
+                min_dist = i;
                 continue;
             }
 
