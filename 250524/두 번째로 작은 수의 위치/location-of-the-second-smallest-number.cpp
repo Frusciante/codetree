@@ -21,12 +21,9 @@ int main() {
     {
         if (a[i] < min)
         {
-            if (sec_min == -1)
-            {
-                sec_min = min;
-                sec_min_idx = i;
-                min = a[i];
-            }
+            sec_min = min;
+            sec_min_idx = i;
+            min = a[i];
         }
         else if (min < a[i] && a[i] < sec_min)
         {
