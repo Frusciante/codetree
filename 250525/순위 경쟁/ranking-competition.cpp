@@ -37,9 +37,9 @@ int main() {
 
     // Please write your code here.
 
-    bool hall_of_fame[4] = {true, true, true, true};
-    bool cp_hall_of_fame[4] {true, true, true, true};
-    int score[3] = {};
+    bool hall_of_fame[sizeof(int)] = {true, true, true, true};
+    bool cp_hall_of_fame[sizeof(int)] {true, true, true, true};
+    int score[SCORE_CNT] = {};
     int cnt = 0;
 
     for (int i = 0; i < n; i++)
