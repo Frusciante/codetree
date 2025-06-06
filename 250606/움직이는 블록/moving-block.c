@@ -1,63 +1,28 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int n;
 int blocks[10000];
 
 int main() {
-
-    int i, j;
+    int avg;
     int sum = 0;
-    int goal;
-    int cnt = 0;
-    int leftovers;
-    int move_amount;
     scanf("%d", &n);
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         scanf("%d", &blocks[i]);
         sum += blocks[i];
     }
     // Please write your code here.
 
-    goal = sum / n;
+    avg = sum / n;
+    int net_movement = 0;
 
-    for (i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        j = i + 1;
-        if (blocks[i] > goal)
-        {
-            leftovers = blocks[i] - goal;
-            cnt += leftovers;
-            blocks[i] -= leftovers;
-            while (j < n && leftovers > 0)
-            {
-                if (blocks[j] < goal)
-                {
-                    move_amount = leftovers % (goal + 1);
-                    blocks[j] += move_amount;
-                    leftovers -= move_amount;
-                }
-                j++;
-            }    
-        }
-        else if (blocks[i] < goal)
-        {
-            leftovers = goal - blocks[i];
-            cnt += leftovers;
-            blocks[i] += leftovers;
-            while (j < n && leftovers > 0)
-            {
-                if (blocks[j] > goal)
-                {
-                    move_amount = leftovers % (goal + 1);
-                    blocks[j] -= move_amount;
-                    leftovers -= move_amount;
-                }
-                j++;
-            } 
-        }
+        net_movement += abs(blocks[i] - avg);
     }
 
-    printf("%d", cnt);
+    printf("%d", net_movement / 2);
 
     return 0;
-}
+}   
