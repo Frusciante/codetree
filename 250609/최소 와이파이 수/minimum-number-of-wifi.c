@@ -22,17 +22,26 @@ int main()
 
     int cnt = 0;
 
-    for (int i = m; i < n; i++)
+    if (n <= m)
     {
-        if (arr[i - m] == NO_WIFI_LIVING)
+        cnt = 1;
+    }
+    else
+    {
+        for (int i = m; i < n; i++)
         {
-            cnt++;
-            for (int j = i - m; j <= i; j++)
+            if (arr[i - m] == NO_WIFI_LIVING)
             {
-                arr[j] = (arr[j] == NO_WIFI_LIVING) ? WIFI_LIVING : WIFI_VACANT;
+                cnt++;
+                for (int j = i - m; j <= i; j++)
+                {
+                    arr[j] = (arr[j] == NO_WIFI_LIVING) ? WIFI_LIVING : WIFI_VACANT;
+                }
             }
         }
     }
+
+    
 
     printf("%d", cnt);
     
