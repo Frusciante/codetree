@@ -5,7 +5,7 @@ int arr[101];
 
 enum
 {
-    NO_WIFI_VACANT, NO_WIFI_LIVING, WIFI_VACANT, WIFI_LIVING
+    NO_WIFI_VACANT, NO_WIFI_LIVING, WIFI_VACANT, WIFI_LIVING, ROUTER
 };
 
 int main() 
@@ -31,12 +31,17 @@ int main()
     {
         if (arr[i - m] == NO_WIFI_LIVING)
         {
-            cnt++;
-            for (int j = i - m; j <= i; j++)
+            for (int j = i - m; j <= i + m && j < n; j++)
             {
-                arr[j] = (arr[j] == NO_WIFI_LIVING) ? WIFI_LIVING : WIFI_VACANT;
+                if (i == j) arr[j] = ROUTER;
+                else arr[j] = (arr[j] == NO_WIFI_LIVING) ? WIFI_LIVING : WIFI_VACANT;
             }
         }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == ROUTER) cnt++;
     }
 
     printf("%d", cnt);
