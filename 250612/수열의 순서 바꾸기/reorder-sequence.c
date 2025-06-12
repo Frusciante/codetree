@@ -17,7 +17,7 @@ void arr_insert_first_elem(int* arr, int max_idx, int insert_idx)
 
 int is_sorted(const int* const arr, int max_idx)
 {
-    for (int i = 0; i < max_idx; ++i)
+    for (int i = 0; i < max_idx - 1; ++i)
     {
         if (arr[i + 1] < arr[i])
         {
@@ -33,19 +33,24 @@ int main() {
     scanf("%d", &n);
     for (int i = 0; i < n; ++i)
         scanf("%d", &blocks[i]);
-    
+
     // Please write your code here.
-    
+
     int cnt = 0;
-    while (is_sorted(blocks, n))
+    while (!is_sorted(blocks, n))
     {
-        for (int i = n - cnt - 1; i > 0 && i < n; i++)
+        for (int i = n - cnt - 1; i > -1 && i <= n; i++)
         {
-            
+            if (blocks[i] > blocks[0] || i == n)
+            {
+                arr_insert_first_elem(blocks, n, i - 1);
+                cnt++;
+                break;
+            }
         }
     }
-    
+
     printf("%d", cnt);
-    
+
     return 0;
 }
