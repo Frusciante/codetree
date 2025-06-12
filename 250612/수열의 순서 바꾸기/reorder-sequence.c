@@ -9,11 +9,23 @@ int main() {
 
     // Please write your code here.
     int max = -1;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; ++i)
     {
         if (blocks[i] > i + 1)
         {
             max = i;
+        }
+    }
+
+    for (int i = max + 1; i < n; ++i)
+    {
+        int j;
+        for (j = i + 1; j < n && j > 1; ++j)
+        {
+            if (blocks[j - 1] > blocks[j])
+            {
+                ++max;
+            }
         }
     }
 
