@@ -8,10 +8,10 @@ int main() {
         scanf("%d", &blocks[i]);
 
     // Please write your code here.
-    int max;
+    int max = -1;
     for (int i = 0; i < n; i++)
     {
-        if (blocks[i] > i)
+        if (blocks[i] > i + 1)
         {
             max = i;
         }
