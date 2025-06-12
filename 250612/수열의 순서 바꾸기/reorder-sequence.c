@@ -10,7 +10,7 @@ int main() {
     // Please write your code here.
     int max = -1;
     for (int i = 0; i < n; ++i)
-    {
+    { 
         if (blocks[i] > i + 1)
         {
             max = i;
@@ -25,6 +25,7 @@ int main() {
             if (blocks[j - 1] > blocks[j])
             {
                 ++max;
+                break;
             }
         }
     }
