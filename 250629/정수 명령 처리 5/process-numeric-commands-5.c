@@ -20,7 +20,7 @@ int push_back(ARRAY* arr, int n)
     }
     else
     {
-        int* new_container = (int*)realloc(arr->container, (arr->size) + 1);
+        int* new_container = (int*)realloc(arr->container, ((arr->size) + 1) * sizeof(int));
         if (new_container == NULL)
         {
             return 1;
@@ -38,14 +38,14 @@ int pop_back(ARRAY* arr)
 {
     if (arr->size > 1)
     {
-        int* new_container = (int*)realloc(arr->container, (arr->size) - 1);
+        int* new_container = (int*)realloc(arr->container, ((arr->size) - 1) * sizeof(int));
         if (new_container == NULL)
         {
             return 1;
         }
         arr->container = new_container;
     }
-    if (arr->size != 0)
+    if (arr->size > 0)
     {
         arr->size--;
     }
@@ -97,6 +97,8 @@ int main()
             printf("%d\n", arr.size);
         }
     }
+
+    free(arr.container);
     
     // Please write your code here.
     
