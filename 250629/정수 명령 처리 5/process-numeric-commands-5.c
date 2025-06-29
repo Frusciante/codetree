@@ -14,19 +14,12 @@ typedef struct
 
 int push_back(ARRAY* arr, int n)
 {
-    if (arr->size == 0)
+    int* new_container = (int*)realloc(arr->container, ((arr->size) + 1) * sizeof(int));
+    if (new_container == NULL)
     {
-        (arr->container)[0] = n;
+        return 1;
     }
-    else
-    {
-        int* new_container = (int*)realloc(arr->container, ((arr->size) + 1) * sizeof(int));
-        if (new_container == NULL)
-        {
-            return 1;
-        }
-        arr->container = new_container;
-    }
+    arr->container = new_container;
 
     (arr->container)[arr->size] = n;
     arr->size++;
@@ -36,24 +29,25 @@ int push_back(ARRAY* arr, int n)
 
 int pop_back(ARRAY* arr)
 {
-    if (arr->size > 1)
+    if (arr->size == 0)
     {
-        int* new_container = (int*)realloc(arr->container, ((arr->size) - 1) * sizeof(int));
-        if (new_container == NULL)
-        {
-            return 1;
-        }
-        arr->container = new_container;
+        return 1;
     }
-    if (arr->size > 0)
+
+    int* new_container = (int*)realloc(arr->container, ((arr->size) - 1) * sizeof(int));
+    if (new_container == NULL)
     {
-        arr->size--;
+        return 1;
     }
+    arr->container = new_container;
+    arr->size--;
+
+    return 0;
 }
 
 int get(ARRAY* arr, int idx)
 {
-    if (idx > arr->size - 1)
+    if (idx > arr->size - 1 || idx < 0)
     {
         return -1;
     }
@@ -66,31 +60,34 @@ int main()
     scanf("%d", &n);
 
     ARRAY arr;
-    arr.container = (int*)malloc(sizeof(int) * 1);
+    arr.container = NULL;
     arr.size = 0;
     
-    if (arr.container == NULL)
-    {
-        return 1;
-    }
-
     for (int i = 0; i < n; i++) 
     {
         scanf("%s", command);
         if (strcmp(command, "push_back") == 0) 
         {
             scanf("%d", &num);
-            push_back(&arr, num);
-
+            if (push_back(&arr, num) == 1)
+            {
+                return 1;
+            }
         } 
         else if (strcmp(command, "get") == 0) 
         {
             scanf("%d", &num);
-            printf("%d\n", get(&arr, num - 1));
+            if (printf("%d\n", get(&arr, num - 1)) == -1)
+            {
+                return 1;
+            }
         } 
         else if (strcmp(command, "pop_back") == 0) 
         {
-            pop_back(&arr);
+            if (pop_back(&arr) == 1)
+            {
+                return 1;
+            }
         } 
         else if (strcmp(command, "size") == 0) 
         {
