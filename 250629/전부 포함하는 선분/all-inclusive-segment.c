@@ -47,7 +47,14 @@ int main()
     qsort(lines, n, sizeof(LINE), asc_LINE);
     qsort(lines_backward, n, sizeof(LINE), desc_LINE);
 
-    printf("%d", MIN(lines_backward[0].end - lines[1].start, lines_backward[1].end - lines[0].start));
-    
+    if (lines[0].start == lines_backward[0].start && lines[0].end == lines_backward[0].end)
+    {
+        printf("%d", lines_backward[1].end - lines[1].start);
+    }
+    else
+    {
+        printf("%d", MIN(lines_backward[0].end - lines[1].start, lines_backward[1].end - lines[0].start));
+    }
+
     return 0;
 }
