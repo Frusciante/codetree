@@ -69,25 +69,17 @@ int main()
         if (strcmp(command, "push_back") == 0) 
         {
             scanf("%d", &num);
-            if (push_back(&arr, num) == 1)
-            {
-                return 1;
-            }
+            push_back(&arr, num);
         } 
         else if (strcmp(command, "get") == 0) 
         {
             scanf("%d", &num);
-            if (printf("%d\n", get(&arr, num - 1)) == -1)
-            {
-                return 1;
-            }
+            printf("%d\n", get(&arr, num - 1));
         } 
         else if (strcmp(command, "pop_back") == 0) 
         {
-            if (pop_back(&arr) == 1)
-            {
-                return 1;
-            }
+            pop_back(&arr) == 1;
+
         } 
         else if (strcmp(command, "size") == 0) 
         {
