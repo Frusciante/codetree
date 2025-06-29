@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define MAX(n1, n2) (((n1) > (n2)) ? (n1) : (n2))
+#include <stdlib.h>
 #define MIN(n1, n2) (((n1) < (n2)) ? (n1) : (n2))
 
 typedef struct
@@ -8,47 +8,46 @@ typedef struct
     int end;
 } LINE;
 
+int asc_LINE(const void* first, const void* second)
+{
+    if (((LINE*)first)->start > ((LINE*)second)->start) { return 1; }
+    if (((LINE*)first)->start < ((LINE*)second)->start) { return -1; }
+    
+    if (((LINE*)first)->end > ((LINE*)second)->end) { return 1; }
+    if (((LINE*)first)->end < ((LINE*)second)->end) { return -1; }
+
+    return 0;
+}
+
+int desc_LINE(const void* first, const void* second)
+{
+    if (((LINE*)first)->end > ((LINE*)second)->end) { return -1; }
+    if (((LINE*)first)->end < ((LINE*)second)->end) { return 1; }
+
+    if (((LINE*)first)->start > ((LINE*)second)->start) { return -1; }
+    if (((LINE*)first)->start < ((LINE*)second)->start) { return 1; }
+
+    return 0;
+}
+
 int main() 
 {
-    int n;
     LINE lines[100];
+    LINE lines_backward[100];
+    int n;
     scanf("%d", &n);
-    int left_end = 100;
-    int right_end = 0;
-
     for (int i = 0; i < n; i++) 
     {
         scanf("%d %d", &lines[i].start, &lines[i].end);
-        left_end = MIN(left_end, lines[i].start);
-        right_end = MAX(right_end, lines[i].end);
+        lines_backward[i].start = lines[i].start;
+        lines_backward[i].end = lines[i].end;
     }
+    
+    // Please write your code here.
+    qsort(lines, n, sizeof(LINE), asc_LINE);
+    qsort(lines_backward, n, sizeof(LINE), desc_LINE);
 
-    LINE answer_without_first = {100, 0};
-    LINE answer_without_last = {100, 0};
-
-    for (int i = 0; i < n; i++)
-    {
-        if (lines[i].start == left_end)
-        {
-            answer_without_last.start = MIN(answer_without_last.start, lines[i].start);
-            answer_without_last.end = MAX(answer_without_last.end, lines[i].end);\
-            continue;
-        }
-
-        if (lines[i].end == right_end)
-        {
-            answer_without_first.start = MIN(answer_without_first.start, lines[i].start);
-            answer_without_first.end = MAX(answer_without_first.end, lines[i].end);
-            continue;
-        }
-
-        answer_without_last.start = MIN(answer_without_last.start, lines[i].start);
-        answer_without_last.end = MAX(answer_without_last.end, lines[i].end);
-        answer_without_first.start = MIN(answer_without_first.start, lines[i].start);
-        answer_without_first.end = MAX(answer_without_first.end, lines[i].end);
-    }
-
-    printf("%d", MIN(answer_without_first.end - answer_without_first.start, answer_without_last.end - answer_without_last.start));
-
+    printf("%d", MIN(lines_backward[0].end - lines[1].start, lines_backward[1].end - lines[0].start));
+    
     return 0;
 }
