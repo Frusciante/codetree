@@ -36,7 +36,8 @@ int pop_back(ARRAY* arr)
         return 2;
     }
 
-    if (arr->size > 1)
+    arr->size--;
+    if (arr->size > 0)
     {
         int* new_container = (int*)realloc(arr->container, ((arr->size) - 1) * sizeof(int));
         if (new_container == NULL)
@@ -44,11 +45,10 @@ int pop_back(ARRAY* arr)
             return 1;
         }
         arr->container = new_container;
-        arr->size--;
+        
     }
     else
     {
-        arr->size = 0;
         free(arr->container);
         arr->container = NULL;
     }
