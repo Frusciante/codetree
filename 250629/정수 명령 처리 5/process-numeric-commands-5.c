@@ -44,7 +44,7 @@ int pop_back(ARRAY* arr)
             return 1;
         }
         arr->container = new_container;
-        
+        arr->size--;
     }
     else
     {
