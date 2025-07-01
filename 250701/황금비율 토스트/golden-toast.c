@@ -47,7 +47,12 @@ int main() {
             {
                 *temp_iter = *(temp_iter + 1);
             }
+            if (iter == end)
+            {
+                iter--;
+            }
             end--;
+            *end = 0;
 
             break;
         }
