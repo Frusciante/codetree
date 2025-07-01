@@ -47,7 +47,6 @@ int main() {
             {
                 *temp_iter = *(temp_iter + 1);
             }
-            ++iter;
             break;
         }
     }
