@@ -7,7 +7,6 @@ int main() {
     scanf("%d %d", &n, &m);
     scanf("%s", s);
     char* iter = s + n;
-    *iter = 0;
     char* end = iter; // end (마지막 원소 + 1)
     char* begin = s;
     char char_to_insert;
@@ -48,6 +47,7 @@ int main() {
             {
                 *temp_iter = *(temp_iter + 1);
             }
+            end--;
 
             break;
         }
