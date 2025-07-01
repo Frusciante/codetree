@@ -43,13 +43,14 @@ int main() {
             ++iter;
             break;
         case 'D':
+            if (iter == end)
+            {
+                continue;
+            }
+
             for (char* temp_iter = iter; temp_iter != end; ++temp_iter)
             {
                 *temp_iter = *(temp_iter + 1);
-            }
-            if (iter == end)
-            {
-                iter--;
             }
             end--;
             *end = 0;
