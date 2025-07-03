@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <string.h>
 #include <math.h>
 #define MAX_N 100000
 #define MAX_DIGIT 5
@@ -53,13 +54,20 @@ int pop_front(INT_LINKED_LIST* list, int* data)
     return 0;
 }
 
-void radix_sort(INT_LINKED_LIST* list, int* arr, int arr_size)
+int get_idx(int num, int digit)
 {
-    for (int i = MAX_DIGIT; i >= 0; --i)
+    return num % (int)pow(10.0, digit + 1.0) / (int)pow(10.0, (double)digit);
+}
+
+void radix_sort(int* arr, int arr_size)
+{
+    INT_LINKED_LIST list[10] = { 0, };
+
+    for (int i = 0; i <= MAX_DIGIT; ++i)
     {
         for (int j = 0; j < arr_size; ++j)
         {
-            push_back(&(list[arr[j] / (int)pow(10.0, (double)i)]), arr[j]);
+            push_back(&list[get_idx(arr[j], i)], arr[j]);
         }
 
         int cnt = 0;
@@ -79,12 +87,10 @@ int main()
 {
     scanf("%d", &n);
 
-    INT_LINKED_LIST list[10] = { 0, };
-
     for (int i = 0; i < n; ++i) { scanf("%d", &arr[i]); }
 
     // Please write your code here.
-    radix_sort(list, arr, n);
+    radix_sort(arr, n);
 
     for (int i = 0; i < n; i++)
     {
