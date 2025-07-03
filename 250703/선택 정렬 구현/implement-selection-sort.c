@@ -12,10 +12,10 @@ void swap(int* n1, int* n2)
 
 void selection_sort(int* arr, int arr_size)
 {
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n; i++)
     {
         int min = i;
-        for (int j = i + 1; j < n - 1; j++)
+        for (int j = i + 1; j < n; j++)
         {
             if (arr[min] > arr[j])
             {
