@@ -86,10 +86,6 @@ int main()
 {
     scanf("%d", &n);
     int* arr = (int*)malloc(sizeof(int) * n);
-    if (!arr)
-    {
-        return 1;
-    }
 
     for (int i = 0; i < n; i++)
     {
