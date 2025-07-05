@@ -22,7 +22,10 @@ int merge(int* arr, int low, int mid, int high)
     int j = 0;
     int k = low;
 
-    while (i < mid - low + 1 && j < high - mid)
+    char i_end_yet = 0;
+    char j_end_yet = 0;
+
+    while ((i_end_yet = (i < mid - low + 1)) && (j_end_yet = (j < high - mid)))
     {
         if (aux_arr1[i] > aux_arr2[j])
         {
@@ -37,21 +40,13 @@ int merge(int* arr, int low, int mid, int high)
         k++;
     }
 
-    if (i < mid - low + 1)
+    if (!i_end_yet)
     {
-        for (; i < mid - low + 1; i++)
-        {
-            arr[k] = aux_arr1[i];
-            k++;
-        }
+        memcpy(&arr[k], aux_arr1 + i, (mid - low + 1 - i) * sizeof(int));
     }
-    if (j < high - mid)
+    else if (!j_end_yet)
     {
-        for (; j < high - mid; j++)
-        {
-            arr[k] = aux_arr2[j];
-            k++;
-        }
+        memcpy(&arr[k], aux_arr2 + j, (high - mid - j) * sizeof(int));
     }
 
     free(aux_arr1);
