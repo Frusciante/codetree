@@ -20,7 +20,7 @@ int get_pivot_idx(int* arr, int low, int high)
     }
 
     int result_idx;
-    int mid = high + low / 2;
+    int mid = (high + low) / 2;
     if (arr[low] > arr[high])
     {
         result_idx = (arr[low] < arr[mid] ? low : mid);
