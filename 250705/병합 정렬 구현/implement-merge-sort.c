@@ -3,6 +3,7 @@
 #include <malloc.h>
 
 int n;
+int arr[100000];
 
 int merge(int* arr, int low, int mid, int high)
 {
@@ -106,11 +107,6 @@ int merge_sort(int* arr, int low, int high)
 int main()
 {
     scanf("%d", &n);
-    int* arr = (int*)malloc(sizeof(int) * n);
-    if (!arr)
-    {
-        return 1;
-    }
 
     for (int i = 0; i < n; i++)
     {
@@ -123,8 +119,6 @@ int main()
     {
         printf("%d ", arr[i]);
     }
-
-    free(arr);
 
     return 0;
 }
