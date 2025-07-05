@@ -7,8 +7,8 @@ int arr[100000];
 
 int merge(int* arr, int low, int mid, int high)
 {
-    int* aux_arr1 = malloc(sizeof(arr) * (mid - low + 1));
-    int* aux_arr2 = malloc(sizeof(arr) * (high - mid));
+    int* aux_arr1 = malloc(sizeof(int) * (mid - low + 1));
+    int* aux_arr2 = malloc(sizeof(int) * (high - mid));
 
     if (!(aux_arr1 && aux_arr2))
     {
@@ -17,7 +17,7 @@ int merge(int* arr, int low, int mid, int high)
 
     //printf("low : %d, mid : %d, high : %d\n", low, mid, high);
 
-    memcpy(aux_arr1, arr + low, sizeof(arr) * (mid - low + 1));
+    memcpy(aux_arr1, arr + low, sizeof(int) * (mid - low + 1));
     //printf("aux_arr1 : ");
     //for (int i = 0; i < mid - low + 1; i++)
     //{
@@ -25,7 +25,7 @@ int merge(int* arr, int low, int mid, int high)
     //}
     //puts("");
 
-    memcpy(aux_arr2, arr + (mid + 1), sizeof(arr) * (high - mid));
+    memcpy(aux_arr2, arr + (mid + 1), sizeof(int) * (high - mid));
     //printf("aux_arr2 : ");
     //for (int i = 0; i < high - mid; i++)
     //{
