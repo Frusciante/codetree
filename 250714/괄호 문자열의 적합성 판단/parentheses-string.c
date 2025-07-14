@@ -127,7 +127,6 @@ int main()
 {
     char str[51] = { 0, };
     scanf("%s", str);
-    
 
     printf("%s", ((check_parentheses(str, strlen(str))) ? "Yes" : "No"));
 
