@@ -115,7 +115,7 @@ int check_parentheses(char* str, int str_len)
         }
     }
 
-    if (stack.size(&stack) != 0)
+    if (!stack.empty(&stack))
     {
         return 0;
     }
